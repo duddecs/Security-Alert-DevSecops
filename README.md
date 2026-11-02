@@ -1,10 +1,8 @@
 # 🛡️ Security Alert – Esteira DevSecOps
 
-![DevSecOps Pipeline](https://assets-eu-01.kc-usercontent.com/ef593040-b591-0198-9506-ed88b30bc023/c76e3a1d-e373-4d9c-a556-b78133e3e43b/Screenshot%202025-04-11%20at%204.01.02%E2%80%AFPM.png)
-
 **Security Alert** é um jogo web de treinamento em cibersegurança para colaboradores da Leroy Merlin. Foi desenvolvido no Challenge 2026 da FIAP, com Flask, SQLite e Jinja2. O jogador passa por fases sobre senhas seguras, phishing, engenharia social, classificação de dados e uso seguro de IA, conquista badges e recebe um certificado.
 
-Este repositório leva a aplicação até a produção por uma **esteira DevSecOps em 8 etapas no GitHub Actions** (atividade CP 03 – DevSecOps).
+O nosso repositório leva da aplicação até a produção por uma **esteira DevSecOps em 8 etapas no GitHub Actions** (atividade CP 03 – DevSecOps).
 
 ## 👥 Integrantes
 
@@ -133,7 +131,7 @@ docker pull ghcr.io/thalia-ay/security-alert-devsecops:<SHA_DO_COMMIT>
 
 Sem o passo 5, a etapa 8 roda depois da aprovação, mas **não faz deploy**. Isso fica explícito no relatório `relatorio-08-producao` e no Resumo.
 
-## 📸 Print do Resumo da Esteira
+## 📸 Resumo da Esteira
 
 Execução #1 ([link](https://github.com/thalia-ay/security-alert-devsecops/actions/runs/41516785203)): todas as etapas `success`, 5m 9s, 12 artifacts.
 
@@ -161,21 +159,11 @@ As demais evidências ficam em [`docs/evidencias/`](docs/evidencias/):
 
 Deploy real executado na execução [#9](https://github.com/thalia-ay/security-alert-devsecops/actions/runs/41528928961), com a imagem pelo digest `ghcr.io/thalia-ay/security-alert-devsecops@sha256:7707654e666d31bb63367113dff72e895bbbcfaa0942cf591d88aa65d6e5c393`. O health check da esteira (`/login`) retornou "Produção respondendo".
 
-> No plano Free, o serviço hiberna quando fica ocioso, e o primeiro acesso pode levar cerca de 1 minuto. O SQLite é efêmero e é apagado a cada novo deploy ou reinício.
-
 ## 📚 Documentação
 
 - [`docs/pipeline.md`](docs/pipeline.md): explicação de cada etapa
 - [`docs/observacoes.md`](docs/observacoes.md): achados, correções, falsos positivos, adaptações para Python, limitações e lições aprendidas
 - [`docs/evidencias/`](docs/evidencias/): prints das execuções e da aprovação
-
-### Adaptação da stack (Node.js → Python)
-
-O Anexo A do enunciado usa Node.js; esta aplicação usa Python/Flask. A tabela completa de equivalências está em [`docs/observacoes.md`](docs/observacoes.md#adaptações-para-python). Em resumo:
-- `npm ci` → `pip install --require-hashes`, com lock gerado por `pip-compile`;
-- `npm audit` → `pip-audit`;
-- árvore de dependências → `pipdeptree`;
-- testes → `pytest`.
 
 ## 📁 Estrutura
 
